@@ -14,7 +14,7 @@ export type DocsLayoutConfig = z.infer<typeof docsLayoutConfig>;
 const Component: React.FC<{ config: DocsLayoutConfig }> = ({ config }) => {
   const url =
     (config.Url ?? "").trim() === ""
-      ? "docs.railway.app"
+      ? "docs.railway.com"
       : (config.Url as string);
   return (
     <div
