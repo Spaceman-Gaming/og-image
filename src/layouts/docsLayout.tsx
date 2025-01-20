@@ -89,7 +89,7 @@ export const docsLayout: ILayout<typeof docsLayoutConfig> = {
     {
       type: "text",
       name: "Url",
-      default: "docs.railway.app",
+      default: "docs.railway.com",
       placeholder: "Url to display",
     },
   ],
