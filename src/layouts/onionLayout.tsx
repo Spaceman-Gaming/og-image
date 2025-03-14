@@ -17,6 +17,7 @@ const onionLayoutConfig = z.object({
 type onionLayoutConfig = z.infer<typeof onionLayoutConfig>;
 
 const Component: React.FC<{ config: onionLayoutConfig }> = ({ config }) => {
+  console.log({ config });
   const {
     TemplateImage,
     Title,
