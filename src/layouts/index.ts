@@ -1,5 +1,6 @@
 import { blogLayout } from "./blogLayout";
 import { docsLayout } from "./docsLayout";
+import { onionLayout } from "./onionLayout";
 import { simpleLayout } from "./simpleLayout";
 import { starterLayout } from "./starterLayout";
 import { templateLayout } from "./templateLayout";
@@ -11,6 +12,7 @@ export const layouts: ILayout<any>[] = [
   starterLayout,
   simpleLayout,
   templateLayout,
+  onionLayout,
 ];
 
 export const getLayout = (layoutName: string): ILayout => {

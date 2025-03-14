@@ -17,7 +17,7 @@ const Component: React.FC<{ config: SimpleLayoutConfig }> = ({ config }) => {
         background: `linear-gradient(to bottom right, ${config.left}, ${config.right})`,
       }}
     >
-      {config.text}
+      {config.text}abc
     </div>
   );
 };
