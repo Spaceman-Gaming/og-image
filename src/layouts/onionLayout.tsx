@@ -34,7 +34,6 @@ const Component: React.FC<{ config: onionLayoutConfig }> = ({ config }) => {
     Description,
     AuthorImage,
     AuthorName,
-    Category,
     attendeeData,
   } = config;
 
@@ -59,51 +58,44 @@ const Component: React.FC<{ config: onionLayoutConfig }> = ({ config }) => {
     ? new Date(attendee.createdAt).toLocaleDateString()
     : "";
 
+  console.log({ displayName, displayEmail, displayId, createdAt });
+
+  const baseUrl = process.env.PUBLIC_URL || "http://localhost:3001";
+
   return (
     <div tw="relative flex flex-col w-full h-full">
       <div tw="flex absolute inset-0 w-full h-full">
         <OnionIllustration />
       </div>
-      <div tw="flex flex-col justify-between h-full px-20 pt-20 pb-12">
-        <div tw="flex justify-between items-center">
-          <img src={TemplateImage} alt={Title} height={64} width={64} />
-          {attendee && (
-            <div tw="bg-white/10 px-6 py-2 rounded-full">
-              <p tw="text-xl text-white font-mono">
-                Attendee #{attendee.index}
-              </p>
-            </div>
-          )}
+      <div tw="flex relative  w-full h-full">
+        <div tw="flex absolute top-[142px] left-[110px]">
+          <img
+            src={`${baseUrl}/onion.png`}
+            alt={AuthorName}
+            height={150}
+            width={150}
+            tw="rounded-full"
+          />
         </div>
 
-        <div tw="flex flex-col gap-4">
-          <p tw="text-6xl font-bold text-white">{displayName}</p>
-          <div tw="flex grow items-end">
-            <p tw="mb-12 text-3xl text-gray-500 max-w-[38rem]">
-              {displayEmail}
-            </p>
-          </div>
+        <div tw="flex absolute top-[260px] right-[255px] text-black text-end w-[200px]">
+          <p tw="text-6xl">
+            {(attendee?.index ?? 0).toString().padStart(4, "0")}
+          </p>
         </div>
-
-        <div tw="mb-1 flex items-end justify-between">
-          <div tw="flex items-center">
-            {AuthorImage && (
-              <img
-                src={AuthorImage}
-                alt={AuthorName}
-                height={40}
-                width={40}
-                tw="rounded-full"
-              />
-            )}
-            <p tw="ml-5 text-gray-500 text-[28px]">{AuthorName}</p>
-          </div>
-
-          {attendee && (
-            <div tw="flex items-center">
-              <p tw="text-gray-500 text-sm font-mono">{createdAt}</p>
-            </div>
-          )}
+        <div tw="flex absolute top-[390px] right-[255px] text-black text-end w-[200px]">
+          <p tw="text-4xl">{displayName}</p>
+        </div>
+        <div tw="flex absolute bottom-[95px] right-[73px]">
+          <img
+            src={`https://api.dicebear.com/9.x/identicon/png?seed=${
+              attendee?.index ?? 0
+            }`}
+            alt={AuthorName}
+            height={87}
+            width={87}
+            tw="rounded-full"
+          />
         </div>
       </div>
     </div>
@@ -143,6 +135,11 @@ export const onionLayout: ILayout<typeof onionLayoutConfig> = {
       name: "Category",
       type: "text",
       default: "Community",
+    },
+    {
+      name: "attendeeData",
+      type: "text",
+      default: "hi", // Empty default
     },
   ],
   Component,

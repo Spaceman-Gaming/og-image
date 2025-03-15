@@ -57,12 +57,19 @@ const handler: NextApiHandler = async (req, res) => {
     // Add attendee data as a serialized JSON string if data exists
     if (data) {
       modifiedQuery.attendeeData = JSON.stringify(data);
+      console.log("Added attendee data to query:", modifiedQuery.attendeeData);
     }
 
+    console.log("Modified query before getLayoutAndConfig:", modifiedQuery);
+    
     const { layout, config } = await getLayoutAndConfig(
       layoutName.toLowerCase(),
       modifiedQuery,
     );
+    
+    // Debug: Check if the config has the attendee data
+    console.log("Config after getLayoutAndConfig:", config);
+    
     const svg = await renderLayoutToSVG({ layout, config });
 
     res.statusCode = 200;
